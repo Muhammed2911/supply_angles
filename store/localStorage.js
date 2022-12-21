@@ -8,9 +8,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_AUTH_STATUS(state, payload) {
-    state.loggedin = payload
-  },
   SET_USER_TOKEN(state, payload) {
     state.userToken = payload
   },
@@ -73,5 +70,8 @@ export const actions = {
       .catch((err) => {
         responseHandler(err, { commit }, 'catch')
       })
+  },
+  response_handler({ commit }, payload) {
+    responseHandler(payload.data, { commit }, payload.type)
   },
 }

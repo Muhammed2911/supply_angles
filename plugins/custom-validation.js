@@ -13,24 +13,24 @@ import {
 //? .umd.js --- add that after rules
 extend('required', {
   ...required,
-  message: 'This field is required',
+  message: 'هذا الحقل مطلوب',
 })
 extend('min', {
   ...min,
   params: ['length'],
-  message: 'This field must be at least {length} characters',
+  message: 'يجب الا يكون طول الحقل اقل من {length}',
 })
 extend('email', {
   ...email,
-  message: 'Write a valid email',
+  message: 'يرجى كاتبة بريد الكتروني صحيح',
 })
 extend('confirmed', {
   ...confirmed,
-  message: 'You must write the same password',
+  message: 'تأكيد كلمة المرور غير مطابقة لكلمة المرور الاساسية',
 })
 extend('image', {
   ...image,
-  message: 'You must upload at least one file',
+  message: 'يجب رفع ملف واحد علي الاقل',
 })
 extend('regex', {
   ...regex,

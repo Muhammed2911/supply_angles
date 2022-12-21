@@ -1,0 +1,56 @@
+.login_main_wrapper {
+  padding-block: 60px;
+  .title_box {
+    margin-bottom: 35px;
+    h2 {
+      font-size: 30px;
+      font-weight: 700;
+    }
+  }
+  .form_wrapper {
+    width: 40%;
+    @media (max-width: 1400px) {
+      width: 50%;
+    }
+    @media (max-width: 991px) {
+      width: 70%;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+    .form-control {
+      padding-inline-start: 22px;
+    }
+    .inline_row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-inline: 20px;
+      .item {
+        a {
+          font-size: 16px;
+          font-weight: 500;
+          text-decoration: underline !important;
+          color: $base-color;
+        }
+      }
+    }
+    .btn-default {
+      display: block;
+      width: 100%;
+      background-color: $base-color;
+      color: #fff;
+      border-radius: 25px;
+      padding-block: 15px;
+    }
+    .register {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      a {
+        text-decoration: underline !important;
+        color: $base-color;
+      }
+    }
+  }
+}

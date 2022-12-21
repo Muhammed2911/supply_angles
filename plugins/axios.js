@@ -1,6 +1,6 @@
 export default function ({ $axios, redirect, app, store }) {
   /* set axios baseurl for all requests */
-  $axios.setBaseURL(`https://admin.munaqes.com/api`)
+  $axios.setBaseURL(`https://api.mysupplyangel.com/api/website`)
 
   function setHeader() {
     let accessToken = null
@@ -9,7 +9,7 @@ export default function ({ $axios, redirect, app, store }) {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Accept-Language': app.i18n.locale,
+      'Accept-Language': 'ar',
     }
     headers.Authorization = accessToken ?? ''
 

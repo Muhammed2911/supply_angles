@@ -1,10 +1,11 @@
-const fs = require('fs')
+// const fs = require('fs')
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'مناقص | المناقصة كما يجب ان تكون',
+    title: 'Supply Angles',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ar',
+      dir: 'rtl',
     },
     meta: [
       { charset: 'utf-8' },
@@ -21,12 +22,7 @@ export default {
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap',
-      },
-    ],
-    script: [
-      {
-        src: 'https://accounts.google.com/gsi/client',
+        href: 'https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap',
       },
     ],
   },
@@ -46,10 +42,6 @@ export default {
     { src: '~/plugins/custom-validation' },
     { src: '~/plugins/vue-multiselect' },
     { src: '~/plugins/vue-toast', mode: 'client' },
-    { src: '~/plugins/vue-tags', ssr: false },
-    { src: '~/plugins/vue-pusher' },
-    { src: '~/plugins/vue-video-player' },
-    { src: '~/plugins/vue-oauth', ssr: false },
     { src: '~/plugins/vue-whatsapp', ssr: false },
   ],
 
@@ -63,16 +55,24 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ['@nuxtjs/style-resources'],
+
+  styleResources: {
+    scss: ['~/assets/css/_variables.scss'],
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/auth-next',
     '@nuxtjs/axios',
+    '@nuxtjs/toast',
     'bootstrap-vue/nuxt',
     'nuxt-vuex-localstorage',
     'cookie-universal-nuxt',
-    '@nuxtjs/moment',
+    [
+      '@nuxtjs/moment',
+      { defaultLocale: 'Africa/Cairo', locales: ['ar'], timezone: true },
+    ],
     [
       '@nuxtjs/firebase',
       {
@@ -90,71 +90,19 @@ export default {
             createServiceWorker: true,
             fcmPublicVapidKey:
               'BF2PaYxkSRDB7BLmMidFCOnfSW4c1tMywe36ZKjO3KZP3KwNlXCFS4OjlKDT1w6zECrwKaUaZApElUZY_npSB7M',
-            inject: fs.readFileSync('./serviceWorker.js'),
+            // inject: fs.readFileSync('./serviceWorker.js'),
           },
         },
-      },
-    ],
-    [
-      'nuxt-i18n',
-      {
-        lazy: true,
-        loadLanguagesAsync: true,
-        locales: [
-          {
-            name: 'English',
-            code: 'en',
-            iso: 'en-US',
-            file: 'en/index.js',
-            dir: 'ltr',
-          },
-          {
-            name: 'Arabic',
-            code: 'ar',
-            iso: 'ar-AR',
-            file: 'ar/index.js',
-            dir: 'rtl',
-          },
-        ],
-        langDir: 'locales/',
-        defaultLocale: 'ar',
-        fallbackLocale: 'ar',
-        strategy: 'prefix',
-        detectBrowserLanguage: {
-          useCookie: true,
-          cookieKey: 'i18n_redirected',
-        },
-        rootRedirect: 'ar',
-        detectBrowserLanguage: false,
       },
     ],
   ],
 
-  router: {
-    middleware: 'routerMiddleware',
-  },
-
-  //auth: {
-  //  strategies: {
-  //    google: {
-  //      clientId:
-  //        '15282782606-aocvcjtntbkrjious32p1bf3ld7ib023.apps.googleusercontent.com',
-  //      clientSecret: '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',
-  //      codeChallengeMethod: '',
-  //      responseType: 'code',
-  //      accessType: 'offline',
-  //      scope: ['profile', 'email'],
-  //      redirectUri: undefined,
-  //    },
-  //  },
-  //},
-  //
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['vee-validate'],
     babel: {
       compact: true,
     },
-    publicPath: 'nuxt-dist/dist/client',
+    postcss: false,
   },
 }
