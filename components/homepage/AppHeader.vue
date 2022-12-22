@@ -11,8 +11,24 @@
       </nuxt-link>
       <div class="buttons">
         <span>لديك حساب بالفعل؟</span>
-        <nuxt-link to="" class="btn btn-default"> تسجيل الدخول </nuxt-link>
+        <nuxt-link :to="{ name: 'auth-login' }" class="btn btn-default">
+          تسجيل الدخول
+        </nuxt-link>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+// importing vuex tools
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'AppHeader',
+  computed: {
+    ...mapGetters({
+      token: ['localStorage/userToken'],
+    }),
+  },
+}
+</script>

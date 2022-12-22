@@ -31,11 +31,16 @@ export default {
               path: '/',
               maxAge: 60 * 60 * 24 * 14,
             }
+            this.$store.commit(
+              'localStorage/SET_STORE_EXIRE',
+              60 * 60 * 24 * 14
+            )
           } else {
             var options = {
               path: '/',
               maxAge: 60 * 60 * 24,
             }
+            this.$store.commit('localStorage/SET_STORE_EXIRE', 60 * 60 * 24)
           }
           this.$cookies.setAll([
             { name: 'userToken', value: accessToken, opts: options },

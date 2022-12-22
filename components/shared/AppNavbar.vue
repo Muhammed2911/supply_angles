@@ -25,18 +25,23 @@
           <!-- end::col -->
           <div class="col-lg-2">
             <div class="options_wrapper">
-              <a href="javascript:;">
-                <svg class="icon">
-                  <use xlink:href="~/static/sprite.svg#notification"></use>
-                </svg>
-              </a>
-              <!-- end::link -->
-
-              <nuxt-link :to="{ name: 'auth-login' }">
-                <svg class="icon">
-                  <use xlink:href="~/static/sprite.svg#user"></use>
-                </svg>
-              </nuxt-link>
+              <client-only>
+                <a href="javascript:;" v-if="token != null">
+                  <svg class="icon">
+                    <use xlink:href="~/static/sprite.svg#notification"></use>
+                  </svg>
+                </a>
+                <!-- end::link -->
+                <a href="javascript:;" v-if="token != null">
+                  <img :src="userData.avatar" alt="avatar" />
+                </a>
+                <!-- end::link -->
+                <nuxt-link :to="{ name: 'auth-login' }" v-if="token == null">
+                  <svg class="icon">
+                    <use xlink:href="~/static/sprite.svg#user"></use>
+                  </svg>
+                </nuxt-link>
+              </client-only>
               <!-- end::link -->
             </div>
           </div>
@@ -76,3 +81,18 @@
     <!-- end::sub_menu_wrapper -->
   </header>
 </template>
+
+<script>
+// importing vuex tools
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'AppNavbar',
+  computed: {
+    ...mapGetters({
+      token: ['localStorage/userToken'],
+      userData: ['localStorage/userData'],
+    }),
+  },
+}
+</script>

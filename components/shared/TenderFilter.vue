@@ -1,6 +1,6 @@
 <template>
   <div class="filter_main_wrapper">
-    <form @submit.prevent="">
+    <form @submit.prevent="handleForm">
       <div class="form-group">
         <div class="input-group">
           <div class="wrapper">
@@ -8,6 +8,7 @@
               type="text"
               class="form-control"
               placeholder="ابحث عن صفقة جديدة"
+              v-model="form.keyword"
             />
             <svg class="icon">
               <use
@@ -17,20 +18,24 @@
           </div>
           <!-- end::wrapper -->
           <div class="wrapper">
-            <multiselect
-              :options="categories"
-              :placeholder="`القطاعات`"
-              track-by="value"
-              label="name"
-            >
-            </multiselect>
-            <multiselect
-              :options="country"
-              :placeholder="`الدولة`"
-              track-by="value"
-              label="name"
-            >
-            </multiselect>
+            <client-only>
+              <multiselect
+                :options="categories"
+                v-model="form.category"
+                :placeholder="`القطاعات`"
+                track-by="value"
+                label="name"
+              >
+              </multiselect>
+              <multiselect
+                :options="countries"
+                v-model="form.country"
+                :placeholder="`الدولة`"
+                track-by="value"
+                label="name"
+              >
+              </multiselect>
+            </client-only>
             <button type="submit" class="btn btn-default">بحث</button>
           </div>
           <!-- end::wrapper -->
@@ -43,25 +48,37 @@
 </template>
 
 <script>
+// importing vuex tools
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'TenderFilter',
   data() {
     return {
-      categories: [
-        { name: 'Category 1', value: 1 },
-        { name: 'Category 2', value: 2 },
-        { name: 'Category 3', value: 3 },
-        { name: 'Category 4', value: 4 },
-        { name: 'Category 5', value: 5 },
-      ],
-      country: [
-        { name: 'Country 1', value: 1 },
-        { name: 'Country 2', value: 2 },
-        { name: 'Country 3', value: 3 },
-        { name: 'Country 4', value: 4 },
-        { name: 'Country 5', value: 5 },
-      ],
+      form: {
+        keyword: null,
+        country: null,
+        category: null,
+      },
     }
+  },
+  watch: {
+    'form.keyword'(current) {
+      if (current == '') {
+        this.form.keyword = null
+      }
+    },
+  },
+  computed: {
+    ...mapGetters({
+      countries: ['localStorage/get_countries'],
+      categories: ['localStorage/get_categories'],
+    }),
+  },
+  methods: {
+    handleForm() {
+      this.$emit('handle-form', this.form)
+    },
   },
 }
 </script>

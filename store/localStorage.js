@@ -4,6 +4,8 @@ export const state = () => ({
   userToken: null,
   userData: null,
   errorMsg: '',
+  countries: [],
+  categories: [],
   expire: 24,
 })
 
@@ -17,6 +19,9 @@ export const mutations = {
   SET_ERROR_MSG(state, payload) {
     state.errorMsg = payload
   },
+  SET_STORE_EXIRE(state, payload) {
+    state.expire = payload
+  },
   RESET_USER(st) {
     const states = (({ userToken, userData }) => ({
       userToken,
@@ -29,12 +34,15 @@ export const mutations = {
     this.$cookies.remove('userToken')
     this.$cookies.remove('userData')
   },
+  SET_COUNTRIES(state, payload) {
+    state.countries = payload
+  },
+  SET_CATEGORIES(state, payload) {
+    state.categories = payload
+  },
 }
 
 export const getters = {
-  checkAuth(state) {
-    return state.loggedin
-  },
   userToken(state) {
     return state.userToken
   },
@@ -44,34 +52,38 @@ export const getters = {
   get_errors(state) {
     return state.errorMsg
   },
+  get_countries(state) {
+    return state.countries
+  },
+  get_categories(state) {
+    return state.categories
+  },
 }
 
 export const actions = {
-  // user login method
-  async user_login({ commit }, data) {
-    await this.$axios
-      .post('/client/auth/login', data)
-      .then((res) => {
-        responseHandler(res, { commit }, 'then')
-        if (res.data.errorCode == 0) {
-          commit('SET_USER_DATA', res.data.data.user)
-          const accessToken = `Bearer ${res.data.data.token}`
-          commit('SET_USER_TOKEN', accessToken)
-          const options = {
-            path: '/',
-            maxAge: 60 * 60 * 24,
-          }
-          this.$cookies.setAll([
-            { name: 'userToken', value: accessToken, opts: options },
-            { name: 'userData', value: res.data.data.user, opts: options },
-          ])
-        }
-      })
-      .catch((err) => {
-        responseHandler(err, { commit }, 'catch')
-      })
-  },
   response_handler({ commit }, payload) {
     responseHandler(payload.data, { commit }, payload.type)
+  },
+  // fetch countries
+  async get_countries({ commit }) {
+    await this.$axios
+      .$get('/countries')
+      .then((res) => {
+        commit('SET_COUNTRIES', res.data)
+      })
+      .catch((err) => {
+        responseHandler(err.response, { commit }, 'catch')
+      })
+  },
+  // fetch categoris
+  async get_categories({ commit }) {
+    await this.$axios
+      .$get('/categories')
+      .then((res) => {
+        commit('SET_CATEGORIES', res.data)
+      })
+      .catch((err) => {
+        responseHandler(err.response, { commit }, 'catch')
+      })
   },
 }
