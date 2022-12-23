@@ -3,11 +3,11 @@
     <form @submit.prevent="handleForm">
       <div class="form-group">
         <div class="input-group">
-          <div class="wrapper">
+          <div class="wrapper" :class="{ 'full-width': dropdowns == false }">
             <input
               type="text"
               class="form-control"
-              placeholder="ابحث عن صفقة جديدة"
+              :placeholder="placeholder"
               v-model="form.keyword"
             />
             <svg class="icon">
@@ -17,8 +17,8 @@
             </svg>
           </div>
           <!-- end::wrapper -->
-          <div class="wrapper">
-            <client-only>
+          <div class="wrapper" :class="{ 'w-15': dropdowns == false }">
+            <client-only v-if="dropdowns">
               <multiselect
                 :options="categories"
                 v-model="form.category"
@@ -38,7 +38,10 @@
               >
               </multiselect>
             </client-only>
-            <button type="submit" class="btn btn-default">بحث</button>
+            <button type="submit" class="btn btn-default" :disabled="disabled">
+              <b-spinner variant="ligth" v-if="disabled" small></b-spinner>
+              <span>بحث</span>
+            </button>
           </div>
           <!-- end::wrapper -->
         </div>
@@ -55,6 +58,17 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'TenderFilter',
+  props: {
+    placeholder: {
+      default: 'ابحث عن صفقة جديدة',
+    },
+    dropdowns: {
+      default: true,
+    },
+    disabled: {
+      default: false,
+    },
+  },
   data() {
     return {
       form: {
@@ -114,6 +128,15 @@ export default {
         width: 50%;
         display: flex;
         align-items: center;
+        &.full-width {
+          width: 85%;
+        }
+        &.w-15 {
+          width: 15%;
+          .btn-default {
+            width: 100%;
+          }
+        }
         .multiselect {
           width: calc(100% / 3);
           min-height: 60px;

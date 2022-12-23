@@ -13,34 +13,33 @@
           <!-- end::col -->
           <div class="col-lg-8">
             <div class="top_menu">
-              <nuxt-link to="">الرئيسية</nuxt-link>
-              <nuxt-link to="">القطاعات</nuxt-link>
-              <nuxt-link to="">المفضلة</nuxt-link>
-              <nuxt-link to="">صفقاتي</nuxt-link>
-              <nuxt-link to="">خطط الاسعار</nuxt-link>
-              <nuxt-link to="">تواصل معنا</nuxt-link>
-              <nuxt-link to="">لماذا نحن</nuxt-link>
+              <nuxt-link :to="{ name: 'index' }">الرئيسية</nuxt-link>
+              <nuxt-link :to="{ name: 'categories' }">القطاعات</nuxt-link>
+              <nuxt-link :to="{ name: '' }">المفضلة</nuxt-link>
+              <nuxt-link :to="{ name: '' }">صفقاتي</nuxt-link>
+              <nuxt-link :to="{ name: '' }">خطط الاسعار</nuxt-link>
+              <nuxt-link :to="{ name: '' }">تواصل معنا</nuxt-link>
+              <nuxt-link :to="{ name: '' }">لماذا نحن</nuxt-link>
             </div>
           </div>
           <!-- end::col -->
           <div class="col-lg-2">
-            <div class="options_wrapper">
-              <client-only>
-                <a href="javascript:;" v-if="token != null">
+            <client-only>
+              <div class="options_wrapper" v-if="token != null">
+                <a href="javascript:;">
                   <svg class="icon">
                     <use xlink:href="~/static/sprite.svg#notification"></use>
                   </svg>
                 </a>
                 <!-- end::link -->
-                <a href="javascript:;" v-if="token != null">
+                <a href="javascript:;">
                   <svg class="icon">
                     <use xlink:href="~/static/sprite.svg#user"></use>
                   </svg>
                 </a>
                 <!-- end::link -->
-              </client-only>
-              <!-- end::link -->
-            </div>
+              </div>
+            </client-only>
           </div>
           <!-- end::col -->
         </div>

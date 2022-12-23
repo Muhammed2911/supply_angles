@@ -1,14 +1,28 @@
 <template>
-  <section class="categories_main_wrapper">
+  <section class="categoreis_page">
     <div class="container-fluid">
+      <!-- start:: breadcrumb -->
+      <Breadcrumb :links="breadcrumb"></Breadcrumb>
+      <!-- end:: breadcrumb -->
+
       <div class="title_box">
         <h2>القطاعات</h2>
       </div>
       <!-- end::title_box -->
+
+      <!-- start::filter_wrapper -->
+      <TenderFilter
+        placeholder="ابحث عن قطاع"
+        :dropdowns="false"
+        :disabled="disabled"
+        @handle-form="handleFilter"
+      ></TenderFilter>
+      <!-- end::filter_wrapper -->
+
       <div class="row">
         <div
           class="col-lg-2 col-md-3 col-2"
-          v-for="(item, idx) in items"
+          v-for="(item, idx) in categories"
           :key="idx"
         >
           <div class="card_wrapper">
@@ -18,38 +32,18 @@
         </div>
       </div>
       <!-- end::row -->
-      <div class="button_wrapper">
-        <nuxt-link :to="{ name: 'tenders-list' }">عرض المزيد</nuxt-link>
-      </div>
     </div>
   </section>
 </template>
 
-<script>
-export default {
-  name: 'CategoriesSection',
-  props: ['items'],
-}
-</script>
+<script src="~/pages/categories/-script.js"></script>
 
 <style lang="scss" scoped>
-.categories_main_wrapper {
-  padding-block: 60px;
+.categoreis_page {
+  padding-block: 70px;
   position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 240px);
-    height: 1px;
-    background-color: #ddd;
-  }
   .title_box {
-    h2 {
-      text-align: center;
-    }
+    margin-bottom: 40px;
   }
   .card_wrapper {
     margin-bottom: 35px;
@@ -64,15 +58,6 @@ export default {
       text-align: center;
       font-size: 18px;
       font-weight: 600;
-    }
-  }
-  .button_wrapper {
-    display: flex;
-    justify-content: flex-end;
-    a {
-      font-weight: 500;
-      color: $base-color;
-      text-decoration: underline !important;
     }
   }
 }
