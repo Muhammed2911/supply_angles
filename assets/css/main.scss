@@ -26,6 +26,14 @@ ul {
   margin: 0;
 }
 
+.title_box {
+  margin-bottom: 60px;
+  h2 {
+    font-weight: 700;
+    font-size: 30px;
+  }
+}
+
 .btn-default {
   font-size: 16px;
   font-weight: 700;
@@ -43,14 +51,49 @@ ul {
   border-radius: 8px !important;
   position: relative;
   margin-top: 0 !important;
-  opacity: 0.8;
+  opacity: 0.8 !important;
+  margin-bottom: 10px !important;
+  font-weight: 600 !important;
   &:hover {
-    opacity: 1;
+    opacity: 1 !important;
   }
 }
 .toasted-container.top-right {
   top: 1.5% !important;
   right: 1.5% !important;
+}
+
+.b-pagination {
+  justify-content: center;
+  margin-top: 55px;
+  .page-item {
+    margin-inline: 10px;
+    &:first-child,
+    &:last-child {
+      display: none;
+    }
+    .page-link {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $base-color;
+      background-color: #fff;
+      color: $base-color;
+      font-size: 18px;
+    }
+    &.active {
+      .page-link {
+        background-color: $base-color;
+        color: #fff;
+      }
+    }
+    &.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
 }
 
 /* start:: form */
@@ -317,11 +360,59 @@ ul {
 .tender_main_wrapper {
   padding-block: 60px;
   background-color: #fff;
-  .title_box {
-    margin-bottom: 40px;
-    h2 {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 240px);
+    height: 1px;
+    background-color: #ddd;
+  }
+}
+
+/* start:: app_footer */
+.app_footer {
+  padding-block: 70px;
+  background-color: #0e233d;
+  .about_wrapper {
+    .logo_wrapper {
+      margin-bottom: 15px;
+      a {
+        font-size: 26px;
+        color: #fff;
+        font-weight: 600;
+      }
+    }
+    .desc {
+      font-size: 15px;
+      line-height: 30px;
+      color: #a0acbc;
+    }
+  }
+  .links_wrapper {
+    padding-inline-start: 25px;
+    .main_title {
+      font-size: 24px;
+      color: #fff;
       font-weight: 700;
-      font-size: 30px;
+      margin-bottom: 22px;
+    }
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      li {
+        width: calc(50% - 10px);
+        margin-bottom: 10px;
+        a {
+          font-size: 15px;
+          color: #a0acbc;
+        }
+      }
     }
   }
 }

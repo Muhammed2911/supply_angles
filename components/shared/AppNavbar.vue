@@ -33,14 +33,11 @@
                 </a>
                 <!-- end::link -->
                 <a href="javascript:;" v-if="token != null">
-                  <img :src="userData.avatar" alt="avatar" />
-                </a>
-                <!-- end::link -->
-                <nuxt-link :to="{ name: 'auth-login' }" v-if="token == null">
                   <svg class="icon">
                     <use xlink:href="~/static/sprite.svg#user"></use>
                   </svg>
-                </nuxt-link>
+                </a>
+                <!-- end::link -->
               </client-only>
               <!-- end::link -->
             </div>

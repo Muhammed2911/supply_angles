@@ -2,6 +2,7 @@
   <main>
     <AppNavbar></AppNavbar>
     <nuxt></nuxt>
+    <AppFooter></AppFooter>
     <!-- start:: whatsapp -->
     <client-only>
       <SocialChat icon :attendants="attendants">
@@ -22,6 +23,7 @@
 <script>
 // importing components
 import AppNavbar from '~/components/shared/AppNavbar.vue'
+import AppFooter from '~/components/shared/AppFooter.vue'
 
 // importing tools
 import Vue from 'vue'
@@ -30,7 +32,7 @@ Vue.mixin(Mixsing)
 
 export default {
   name: 'DefaultLayout',
-  components: { AppNavbar },
+  components: { AppNavbar, AppFooter },
   data() {
     return {
       attendants: [
@@ -53,7 +55,7 @@ export default {
 <style>
 .vsc-popup {
   right: auto !important;
-  left: 20px !important;
+  left: 10px !important;
 }
 .vsc-popup-header {
   background-color: #1e805d !important;

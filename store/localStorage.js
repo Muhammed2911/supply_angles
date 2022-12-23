@@ -7,6 +7,7 @@ export const state = () => ({
   countries: [],
   categories: [],
   expire: 24,
+  status: true,
 })
 
 export const mutations = {

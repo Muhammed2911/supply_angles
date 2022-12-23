@@ -2,7 +2,9 @@
   <main class="home_wrapper">
     <AppHeader></AppHeader>
     <!-- end::AppHeader -->
-    <TenderSection :tenders="tenders"></TenderSection>
+    <TenderSection :tenders="homedata.tenders"></TenderSection>
+    <CategoriesSection :items="homedata.categories"></CategoriesSection>
+    <ServicesSection :items="homedata.our_services"></ServicesSection>
   </main>
 </template>
 
@@ -10,38 +12,22 @@
 //importing components
 import AppHeader from '~/components/homepage/AppHeader.vue'
 import TenderSection from '~/components/homepage/TenderSection.vue'
+import CategoriesSection from '~/components/homepage/CategoriesSection.vue'
+import ServicesSection from '~/components/homepage/ServicesSection.vue'
 //importing vuex tools
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
-  components: { AppHeader, TenderSection },
+  components: { AppHeader, TenderSection, CategoriesSection, ServicesSection },
   async asyncData(context) {
-    // get home data
-    await context.$axios
-      .$get('/home')
-      .then((res) => {
-        context.store.commit('homepage/SET_HOMEPAGE_DATA', res.data)
-      })
-      .catch((err) => {})
-
-    // get tender data
-    await context.$axios
-      .$get('/tenders')
-      .then((res) => {
-        context.store.commit('homepage/SET_TENDERS', res.data)
-      })
-      .catch((err) => {})
+    const homedata = await context.$axios.$get('/home').catch((err) => {})
+    return { homedata: homedata.data }
   },
-  async mounted() {
-    await this.$store.dispatch('localStorage/get_countries')
-    await this.$store.dispatch('localStorage/get_categories')
-  },
-  computed: {
-    ...mapGetters({
-      homedata: ['homepage/get_homepage_data'],
-      tenders: ['homepage/get_tenders'],
-    }),
-  },
+  // computed: {
+  //   ...mapGetters({
+  //     homedata: ['homepage/get_homepage_data'],
+  //   }),
+  // },
 }
 </script>

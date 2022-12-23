@@ -116,10 +116,7 @@ export default {
               'تم اضافة المناقصة من المفضلة بنجاح !'
             )
           }
-          this.$store.commit('homepage/UPDATED_TENDER_FAV', {
-            id: this.item.id,
-            status: res.data.data.is_favorite,
-          })
+          this.item.is_favorite = res.data.data.is_favorite
         })
         .catch((err) => {
           const req_error = {

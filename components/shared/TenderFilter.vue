@@ -25,6 +25,7 @@
                 :placeholder="`القطاعات`"
                 track-by="value"
                 label="name"
+                id="category"
               >
               </multiselect>
               <multiselect
@@ -33,6 +34,7 @@
                 :placeholder="`الدولة`"
                 track-by="value"
                 label="name"
+                id="country"
               >
               </multiselect>
             </client-only>
