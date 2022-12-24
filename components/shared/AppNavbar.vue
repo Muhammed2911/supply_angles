@@ -66,7 +66,9 @@
           <!-- end::col -->
           <div class="col-lg-2">
             <div class="options_wrapper">
-              <nuxt-link to=""> إضافة مناقصة او طلب </nuxt-link>
+              <nuxt-link :to="{ name: 'tender' }">
+                إضافة مناقصة او طلب
+              </nuxt-link>
             </div>
           </div>
           <!-- end::col -->

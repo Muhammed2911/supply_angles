@@ -7,6 +7,7 @@ import {
   confirmed,
   image,
   regex,
+  numeric,
   url,
 } from 'vee-validate/dist/rules'
 //? Another Solution For Vee-validate import it like that
@@ -23,6 +24,10 @@ extend('min', {
 extend('email', {
   ...email,
   message: 'يرجى كاتبة بريد الكتروني صحيح',
+})
+extend('numeric', {
+  ...numeric,
+  message: 'يرجى كاتبة ارقام فقط في هذا الحقل',
 })
 extend('confirmed', {
   ...confirmed,

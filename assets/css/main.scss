@@ -119,6 +119,10 @@ ul {
           border-color: $base-color;
         }
       }
+      textarea.form-control {
+        height: auto !important;
+        resize: none;
+      }
     }
     .validation-error {
       font-size: 14px;
@@ -170,6 +174,69 @@ ul {
           opacity: 0;
           visibility: hidden;
           transition: all 0.25s;
+        }
+      }
+    }
+    &.file_input {
+      .input-group {
+        input[type='file'] {
+          display: none;
+        }
+        label {
+          height: 60px;
+          border-radius: 25px;
+          cursor: pointer;
+          border: 1px solid #e6e6e6;
+          font-size: 15px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding-inline: 15px;
+          color: #6c757d;
+          span {
+            &:last-child {
+              color: $base-color;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+    .preview_wrapper {
+      display: flex;
+      align-items: center;
+      div {
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 250px;
+        background-color: #ddd;
+        border-radius: 25px;
+        padding: 4px 15px;
+        margin-inline-end: 8px;
+        margin-bottom: 8px;
+        .name {
+          direction: ltr;
+          display: inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          width: calc(100% - 30px);
+          color: #000;
+          font-weight: 500;
+          font-size: 14px;
+        }
+        .close {
+          border-radius: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 16px;
+          color: #fff;
+          padding: 5px;
+          color: #f00;
+          cursor: pointer;
         }
       }
     }
