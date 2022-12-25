@@ -4,7 +4,9 @@ export default function ({ $axios, redirect, app, store }) {
 
   function setHeader() {
     let accessToken = null
-    accessToken = app.$cookies.get('userToken')
+    accessToken =
+      app.$cookies.get('userToken') ||
+      app.store.getters['localStorage/userToken']
     const headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',

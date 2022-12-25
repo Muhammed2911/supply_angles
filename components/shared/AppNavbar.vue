@@ -15,7 +15,7 @@
             <div class="top_menu">
               <nuxt-link :to="{ name: 'index' }">الرئيسية</nuxt-link>
               <nuxt-link :to="{ name: 'categories' }">القطاعات</nuxt-link>
-              <nuxt-link :to="{ name: '' }">المفضلة</nuxt-link>
+              <nuxt-link :to="{ name: 'favourite' }">المفضلة</nuxt-link>
               <nuxt-link :to="{ name: '' }">صفقاتي</nuxt-link>
               <nuxt-link :to="{ name: '' }">خطط الاسعار</nuxt-link>
               <nuxt-link :to="{ name: '' }">تواصل معنا</nuxt-link>
@@ -56,7 +56,9 @@
           <!-- end::col -->
           <div class="col-lg-8">
             <div class="menu">
-              <nuxt-link to="">سجل المناقصات</nuxt-link>
+              <nuxt-link :to="{ name: 'tenders-list' }">
+                سجل المناقصات
+              </nuxt-link>
               <nuxt-link to="">تفصيات وهوالك دورية</nuxt-link>
               <nuxt-link to="">المفضلة</nuxt-link>
               <nuxt-link to="">الوكلاء والموزعين</nuxt-link>

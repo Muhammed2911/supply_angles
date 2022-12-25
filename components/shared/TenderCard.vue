@@ -78,7 +78,7 @@
                 <svg class="icon">
                   <use xlink:href="~/static/sprite.svg#favourite-filled"></use>
                 </svg>
-                <span>مضاف الي المفضلة</span>
+                <span> حذف من المفضلة</span>
               </span>
             </a>
           </div>

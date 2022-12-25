@@ -243,6 +243,29 @@ ul {
   }
 }
 
+/* start:: .nav-tabs */
+.nav-tabs {
+  border-bottom: none;
+  margin-bottom: 30px;
+  .nav-item {
+    margin-inline-end: 15px;
+    .nav-link {
+      padding: 8px 15px;
+      background-color: transparent;
+      border: none;
+      color: #919191;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 8px !important;
+      transition: all 0.25s;
+      &.active {
+        background-color: $base-color;
+        color: #fff;
+      }
+    }
+  }
+}
+
 /* start:: app_navbar */
 .app_navbar {
   padding: 20px 0;
