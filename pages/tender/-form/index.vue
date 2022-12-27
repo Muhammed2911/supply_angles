@@ -246,8 +246,8 @@
                           class="close"
                           @click="
                             deleteMedia(
-                              file.id,
-                              idx,
+                              tender_specifications_file.media.id,
+                              0,
                               'tender_specifications_file'
                             )
                           "

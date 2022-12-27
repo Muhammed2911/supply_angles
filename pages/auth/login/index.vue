@@ -63,7 +63,9 @@
                     <label for="remember">تذكر كلمة المرور</label>
                   </div>
                   <div class="item">
-                    <nuxt-link :to="{ name: '' }"> نسيت كلمة المرور </nuxt-link>
+                    <nuxt-link :to="{ name: 'auth-forget' }">
+                      نسيت كلمة المرور
+                    </nuxt-link>
                   </div>
                 </div>
               </b-form-group>
@@ -79,7 +81,9 @@
               <b-form-group>
                 <p class="register">
                   ليس لديك حساب ؟
-                  <nuxt-link :to="{ name: '' }">انشاء عضوية</nuxt-link>
+                  <nuxt-link :to="{ name: 'auth-register' }">
+                    انشاء عضوية
+                  </nuxt-link>
                 </p>
               </b-form-group>
               <!-- end::item -->

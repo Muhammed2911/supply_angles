@@ -6,6 +6,7 @@ export const state = () => ({
   errorMsg: '',
   countries: [],
   categories: [],
+  cities: [],
   expire: 24,
   status: true,
 })
@@ -41,6 +42,9 @@ export const mutations = {
   SET_CATEGORIES(state, payload) {
     state.categories = payload
   },
+  SET_CITIES(state, payload) {
+    state.cities = payload
+  },
 }
 
 export const getters = {
@@ -58,6 +62,9 @@ export const getters = {
   },
   get_categories(state) {
     return state.categories
+  },
+  get_cities(state) {
+    return state.cities
   },
 }
 
@@ -82,6 +89,16 @@ export const actions = {
       .$get('/categories')
       .then((res) => {
         commit('SET_CATEGORIES', res.data)
+      })
+      .catch((err) => {
+        responseHandler(err.response, { commit }, 'catch')
+      })
+  },
+  async get_cities({ commit }) {
+    await this.$axios
+      .$get('/cities')
+      .then((res) => {
+        commit('SET_CITIES', res.data)
       })
       .catch((err) => {
         responseHandler(err.response, { commit }, 'catch')

@@ -26,6 +26,22 @@ ul {
   margin: 0;
 }
 
+.phone_input {
+  select {
+    width: 100px !important;
+    height: 60px;
+    border-radius: 25px !important;
+    flex: none !important;
+    box-shadow: none !important;
+    margin-inline-end: 15px;
+    border: 1px solid #e6e6e6 !important;
+    font-family: 'Montserrat', sans-serif;
+  }
+  span.wrapper {
+    width: calc(100% - 115px);
+  }
+}
+
 .title_box {
   margin-bottom: 60px;
   h2 {
@@ -94,6 +110,16 @@ ul {
       cursor: not-allowed;
     }
   }
+}
+
+.multiselect__select {
+  top: 15px !important;
+}
+.multiselect__tags {
+  min-height: 60px !important;
+  border-radius: 25px !important;
+  display: flex !important;
+  align-items: center;
 }
 
 /* start:: form */
@@ -304,25 +330,46 @@ ul {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    a {
-      width: 40px;
-      height: 40px;
-      background-color: #fff;
-      border-radius: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .icon {
-        width: 22px;
-        height: 22px;
+    .dropdown {
+      .dropdown-toggle {
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border-radius: 100%;
+        border: none;
+        padding: 0;
+        position: relative;
+        .icon {
+          width: 22px;
+          height: 22px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+        }
       }
       &:last-child {
-        margin-right: 25px;
+        margin-inline-start: 25px;
       }
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
+      .dropdown-menu {
+        border: none;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        border-radius: 15px;
+        top: 10px !important;
+        .text-danger {
+          a {
+            color: #dc3545;
+          }
+        }
+        a {
+          font-size: 15px;
+          font-weight: 600;
+        }
       }
     }
   }
@@ -501,6 +548,25 @@ ul {
         a {
           font-size: 15px;
           color: #a0acbc;
+        }
+      }
+    }
+  }
+  .contact_info {
+    .main_title {
+      font-size: 24px;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+    .flex_wrapper {
+      display: flex;
+      align-items: center;
+      a {
+        margin-inline-end: 15px;
+        .icon {
+          width: 25px;
+          height: 25px;
         }
       }
     }

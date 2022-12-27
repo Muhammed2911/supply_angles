@@ -1,6 +1,17 @@
 export const state = () => ({
   homepage: [],
   tenders: [],
+  footer: {
+    messenger: '',
+    whatsapp: '',
+    social: {
+      facebook: '',
+      twitter: '',
+      instagram: '',
+      linkedin: '',
+      youtube: '',
+    },
+  },
 })
 
 export const mutations = {
@@ -16,6 +27,9 @@ export const mutations = {
     )
     state.tenders[tenderIdx].is_favorite = payload.status
   },
+  SET_FOOTER(state, payload) {
+    state.footer = payload
+  },
 }
 
 export const getters = {
@@ -24,5 +38,8 @@ export const getters = {
   },
   get_tenders(state) {
     return state.tenders
+  },
+  get_footer(state) {
+    return state.footer
   },
 }

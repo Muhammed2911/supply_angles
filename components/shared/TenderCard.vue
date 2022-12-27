@@ -67,7 +67,7 @@
                 <use xlink:href="~/static/sprite.svg#share"></use>
               </svg>
             </a>
-            <a href="javascript:;" @click="toggleFav">
+            <a href="javascript:;" @click="toggleFav" v-if="is_loggedin">
               <span v-if="item.is_favorite != true">
                 <svg class="icon">
                   <use xlink:href="~/static/sprite.svg#favourite"></use>
@@ -99,6 +99,11 @@
 export default {
   name: 'TenderCard',
   props: ['item'],
+  computed: {
+    is_loggedin() {
+      return this.$cookies.get('userToken')
+    },
+  },
   methods: {
     async toggleFav() {
       await this.$axios

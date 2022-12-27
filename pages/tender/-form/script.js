@@ -38,24 +38,35 @@ export default {
   },
   methods: {
     async deleteMedia(id, idx, type) {
-      await this.$axios
-        .delete(`/tender/${this.item.id}/medias/${id}`)
-        .then((res) => {
-          this.TriggerNotify('success', 'تم حذف الملف بنجاح !')
-        })
-        .catch((err) => {
-          const req_error = {
-            data: err.response,
-            type: 'catch',
-          }
-          this.error_handler(req_error)
-          this.TriggerNotify('error', this.notify.message)
-        })
+      if (id != 'new') {
+        await this.$axios
+          .delete(`/tender/${this.item.id}/medias/${id}`)
+          .then((res) => {
+            this.TriggerNotify('success', 'تم حذف الملف بنجاح !')
+          })
+          .catch((err) => {
+            const req_error = {
+              data: err.response,
+              type: 'catch',
+            }
+            this.error_handler(req_error)
+            this.TriggerNotify('error', this.notify.message)
+          })
+      }
       if (type == 'tender_other_files') {
+        if (id == 'new') {
+          this.form.tender_other_files.splice(idx, 1)
+        }
         this.tender_other_files.splice(idx, 1)
       } else if (type == 'tender_images') {
+        if (id == 'new') {
+          this.form.tender_images.splice(idx, 1)
+        }
         this.tender_images.splice(idx, 1)
       } else if (type == 'tender_specifications_file') {
+        if (id == 'new') {
+          this.form.tender_specifications_file = null
+        }
         this.tender_specifications_file = null
       }
     },
@@ -63,13 +74,25 @@ export default {
       if (type == 'tender_specifications_file') {
         console.log($event.target.files[0])
         this.form.tender_specifications_file = $event.target.files[0]
+        this.tender_specifications_file = {
+          id: 'new',
+          media: URL.createObjectURL($event.target.files[0]),
+        }
       } else if (type == 'tender_images') {
         for (let x = 0; x < $event.target.files.length; x++) {
           this.form.tender_images.push($event.target.files[x])
+          this.tender_images.push({
+            id: 'new',
+            media: URL.createObjectURL($event.target.files[x]),
+          })
         }
       } else if (type == 'tender_other_files') {
         for (let x = 0; x < $event.target.files.length; x++) {
           this.form.tender_other_files.push($event.target.files[x])
+          this.tender_other_files.push({
+            id: 'new',
+            media: URL.createObjectURL($event.target.files[x]),
+          })
         }
       }
     },
