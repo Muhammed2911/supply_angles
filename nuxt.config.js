@@ -39,8 +39,8 @@ export default {
   plugins: [
     { src: '~/plugins/bootstrap-vue' },
     { src: '~/plugins/axios' },
-    { src: '~/plugins/custom-validation' },
-    { src: '~/plugins/vue-multiselect' },
+    { src: '~/plugins/custom-validation', ssr: false },
+    { src: '~/plugins/vue-multiselect', ssr: false },
     { src: '~/plugins/vue-toast', mode: 'client' },
     { src: '~/plugins/vue-whatsapp', ssr: false },
   ],
