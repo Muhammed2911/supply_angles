@@ -34,7 +34,9 @@
               <li>
                 <nuxt-link :to="{ name: '' }"> الوكلاء و الموزعين </nuxt-link>
               </li>
-              <li><nuxt-link :to="{ name: 'plans' }"> خطط الاسعار </nuxt-link></li>
+              <li>
+                <nuxt-link :to="{ name: 'plans' }"> خطط الاسعار </nuxt-link>
+              </li>
               <li><nuxt-link :to="{ name: '' }"> صفقاتي </nuxt-link></li>
               <li>
                 <nuxt-link :to="{ name: 'contact' }"> اتصل بنا </nuxt-link>
@@ -61,38 +63,40 @@
         <div class="col-lg-4">
           <div class="contact_info">
             <h4 class="main_title">تابعنا</h4>
-            <div class="flex_wrapper">
-              <a :href="footerData.social.facebook" target="_blank">
-                <svg class="icon">
-                  <use xlink:href="~/static/sprite.svg#facebook"></use>
-                </svg>
-              </a>
-              <!-- end::item -->
-              <a :href="footerData.social.twitter" target="_blank">
-                <svg class="icon">
-                  <use xlink:href="~/static/sprite.svg#twitter"></use>
-                </svg>
-              </a>
-              <!-- end::item -->
-              <a :href="footerData.social.instagram" target="_blank">
-                <svg class="icon">
-                  <use xlink:href="~/static/sprite.svg#instagram"></use>
-                </svg>
-              </a>
-              <!-- end::item -->
-              <a :href="footerData.social.linkedin" target="_blank">
-                <svg class="icon">
-                  <use xlink:href="~/static/sprite.svg#linkedin"></use>
-                </svg>
-              </a>
-              <!-- end::item -->
-              <a :href="footerData.social.youtube" target="_blank">
-                <svg class="icon">
-                  <use xlink:href="~/static/sprite.svg#youtube"></use>
-                </svg>
-              </a>
-              <!-- end::item -->
-            </div>
+            <client-only>
+              <div class="flex_wrapper">
+                <a :href="footerData.social.facebook" target="_blank">
+                  <svg class="icon">
+                    <use xlink:href="~/static/sprite.svg#facebook"></use>
+                  </svg>
+                </a>
+                <!-- end::item -->
+                <a :href="footerData.social.twitter" target="_blank">
+                  <svg class="icon">
+                    <use xlink:href="~/static/sprite.svg#twitter"></use>
+                  </svg>
+                </a>
+                <!-- end::item -->
+                <a :href="footerData.social.instagram" target="_blank">
+                  <svg class="icon">
+                    <use xlink:href="~/static/sprite.svg#instagram"></use>
+                  </svg>
+                </a>
+                <!-- end::item -->
+                <a :href="footerData.social.linkedin" target="_blank">
+                  <svg class="icon">
+                    <use xlink:href="~/static/sprite.svg#linkedin"></use>
+                  </svg>
+                </a>
+                <!-- end::item -->
+                <a :href="footerData.social.youtube" target="_blank">
+                  <svg class="icon">
+                    <use xlink:href="~/static/sprite.svg#youtube"></use>
+                  </svg>
+                </a>
+                <!-- end::item -->
+              </div>
+            </client-only>
           </div>
         </div>
         <!-- end::col -->
