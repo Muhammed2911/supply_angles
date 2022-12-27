@@ -112,16 +112,6 @@ ul {
   }
 }
 
-.multiselect__select {
-  top: 15px !important;
-}
-.multiselect__tags {
-  min-height: 60px !important;
-  border-radius: 25px !important;
-  display: flex !important;
-  align-items: center;
-}
-
 /* start:: form */
 .form_wrapper {
   .form-group {
@@ -265,6 +255,15 @@ ul {
           cursor: pointer;
         }
       }
+    }
+    .multiselect__select {
+      top: 15px !important;
+    }
+    .multiselect__tags {
+      min-height: 60px !important;
+      border-radius: 25px !important;
+      display: flex !important;
+      align-items: center;
     }
   }
 }
