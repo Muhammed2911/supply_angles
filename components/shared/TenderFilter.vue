@@ -85,6 +85,14 @@ export default {
       }
     },
   },
+  async mounted() {
+    if (this.$store.getters['localStorage/get_countries'].length == 0) {
+      await this.$store.dispatch('localStorage/get_countries')
+    }
+    if (this.$store.getters['localStorage/get_categories'].length == 0) {
+      await this.$store.dispatch('localStorage/get_categories')
+    }
+  },
   computed: {
     ...mapGetters({
       countries: ['localStorage/get_countries'],

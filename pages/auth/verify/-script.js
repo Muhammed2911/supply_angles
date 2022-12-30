@@ -55,8 +55,15 @@ export default {
         await this.$axios
           .post('/check-code', this.form)
           .then((res) => {
-            this.TriggerNotify('success', 'تم التأكيد بنجاح !')
-            this.$router.replace('/auth/forget/reset')
+            this.TriggerNotify('success', 'يرجى ادخال كلمة المرور الجديدة')
+            this.$router.replace({
+              name: 'auth-forget-reset',
+              query: {
+                phone_code: this.form.phone_code,
+                phone: this.form.phone,
+                code: this.form.code,
+              },
+            })
           })
           .catch((err) => {
             const req_error = {

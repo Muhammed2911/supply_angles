@@ -68,6 +68,7 @@ export default {
     '@nuxtjs/toast',
     'bootstrap-vue/nuxt',
     'nuxt-vuex-localstorage',
+    'vue-social-sharing/nuxt',
     'cookie-universal-nuxt',
     [
       '@nuxtjs/moment',

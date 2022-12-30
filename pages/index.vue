@@ -2,7 +2,7 @@
   <main class="home_wrapper">
     <AppHeader></AppHeader>
     <!-- end::AppHeader -->
-    <TenderSection :tenders="homedata.tenders"></TenderSection>
+    <TenderSection :tenders="tenders"></TenderSection>
     <CategoriesSection :items="homedata.categories"></CategoriesSection>
     <ServicesSection :items="homedata.our_services"></ServicesSection>
   </main>
@@ -22,7 +22,8 @@ export default {
   components: { AppHeader, TenderSection, CategoriesSection, ServicesSection },
   async asyncData(context) {
     const homedata = await context.$axios.$get('/home').catch((err) => {})
-    return { homedata: homedata.data }
+    const tenders = await context.$axios.$get('/tenders').catch((err) => {})
+    return { homedata: homedata.data, tenders: tenders.data }
   },
   // computed: {
   //   ...mapGetters({

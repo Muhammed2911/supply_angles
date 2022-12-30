@@ -29,8 +29,14 @@
                   معلومات الحساب و سابقة الاعمال
                 </nuxt-link>
               </li>
-              <li><nuxt-link :to="{ name: '' }"> سجل المناقصات </nuxt-link></li>
-              <li><nuxt-link :to="{ name: '' }"> المفضلة </nuxt-link></li>
+              <li>
+                <nuxt-link :to="{ name: 'tenders-list' }">
+                  سجل المناقصات
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ name: 'favourite' }"> المفضلة </nuxt-link>
+              </li>
               <li>
                 <nuxt-link :to="{ name: '' }"> الوكلاء و الموزعين </nuxt-link>
               </li>
@@ -45,8 +51,8 @@
                 <nuxt-link
                   :to="{ name: 'static-slug', params: { slug: 'privacy' } }"
                 >
-                  سياسة الخصوصية</nuxt-link
-                >
+                  سياسة الخصوصية
+                </nuxt-link>
               </li>
               <li>
                 <nuxt-link

@@ -46,7 +46,7 @@ export default {
           },
         })
         .then((res) => {
-          this.$store.commit('homepage/SET_TENDERS', res.data)
+          this.$store.commit('tenders/SET_TENDERS_DATA', res.data)
         })
         .catch((err) => {
           const req_error = {

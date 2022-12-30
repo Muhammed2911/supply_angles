@@ -48,6 +48,30 @@ ul {
     font-weight: 700;
     font-size: 30px;
   }
+  &.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .buttons {
+      .btn {
+        border-radius: 25px;
+        font-size: 14px;
+        padding-inline: 25px;
+        &:first-child {
+          background-color: $base-color;
+          color: #fff;
+          margin-inline-end: 15px;
+        }
+        &:last-child {
+          border: 2px solid $base-color;
+          color: $base-color;
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
 }
 
 .btn-default {
@@ -566,6 +590,109 @@ ul {
         .icon {
           width: 25px;
           height: 25px;
+        }
+      }
+    }
+  }
+}
+
+/* start:: products card */
+
+.expirations_wrapper {
+  .card_wrapper {
+    padding: 15px 20px;
+    border: 2px solid $base-color;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    .img_wrapper {
+      img {
+        width: 100%;
+        height: 180px;
+        border-radius: 10px;
+      }
+    }
+    .info_wrapper {
+      .title {
+        font-size: 28px;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 15px;
+        span {
+          font-size: 18px;
+          color: #808080;
+          font-weight: 400;
+        }
+      }
+      .flex_wrapper {
+        display: flex;
+        justify-content: space-between;
+        .item {
+          width: calc(50% - 20px);
+          .desc {
+            font-size: 16px;
+            color: #808080;
+            line-height: 1.5;
+          }
+          .buttons_wrapper {
+            a {
+              margin-inline-end: 20px;
+              .icon {
+                width: 26px;
+                height: 26px;
+                fill: $base-color;
+              }
+              span {
+                font-size: 16px;
+                font-weight: 500;
+                color: $base-color;
+              }
+            }
+          }
+          .line {
+            margin-bottom: 10px;
+            span {
+              &:first-child {
+                font-weight: 500;
+                margin-inline-end: 10px;
+              }
+              &:last-child {
+                color: $base-color;
+              }
+            }
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+    .options_wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      .item {
+        display: flex;
+        justify-content: flex-end;
+        a {
+          margin-inline-end: 20px;
+          .icon {
+            width: 26px;
+            height: 26px;
+            fill: $base-color;
+          }
+          span {
+            font-size: 16px;
+            font-weight: 500;
+            color: $base-color;
+          }
+        }
+        .btn-default {
+          background-color: $base-color;
+          color: #fff;
+          font-size: 15px;
+          border-radius: 25px;
+          font-weight: 500;
         }
       }
     }
