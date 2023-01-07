@@ -32,6 +32,7 @@ Vue.mixin(Mixsing)
 
 export default {
   name: 'DefaultLayout',
+  middleware: 'authed',
   components: { AppNavbar, AppFooter },
   data() {
     return {

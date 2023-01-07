@@ -15,7 +15,11 @@
             <div class="top_menu">
               <nuxt-link :to="{ name: 'index' }">الرئيسية</nuxt-link>
               <nuxt-link :to="{ name: 'categories' }">القطاعات</nuxt-link>
-              <nuxt-link :to="{ name: 'my-tenders' }">صفقاتي</nuxt-link>
+              <client-only>
+                <nuxt-link :to="{ name: 'my-tenders' }" v-if="token != null">
+                  صفقاتي
+                </nuxt-link>
+              </client-only>
               <nuxt-link :to="{ name: 'plans' }">خطط الاسعار</nuxt-link>
               <nuxt-link :to="{ name: 'contact' }">تواصل معنا</nuxt-link>
               <nuxt-link

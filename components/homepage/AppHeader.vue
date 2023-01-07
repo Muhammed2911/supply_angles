@@ -5,16 +5,22 @@
       <p class="desc">
         يمكنك الحصول علي افضل الصفقات سواء تريد تقديم الخدمه او تريد عرض طلبك
       </p>
-      <p class="subscribe">اشترك معنا الان</p>
-      <nuxt-link to="" class="btn btn-default signup_btn">
-        تسجيل عضوية جديدة
-      </nuxt-link>
-      <div class="buttons">
-        <span>لديك حساب بالفعل؟</span>
-        <nuxt-link :to="{ name: 'auth-login' }" class="btn btn-default">
-          تسجيل الدخول
+      <client-only>
+        <p class="subscribe" v-if="!token">اشترك معنا الان</p>
+      </client-only>
+      <client-only>
+        <nuxt-link to="" class="btn btn-default signup_btn" v-if="!token">
+          تسجيل عضوية جديدة
         </nuxt-link>
-      </div>
+      </client-only>
+      <client-only>
+        <div class="buttons" v-if="!token">
+          <span>لديك حساب بالفعل؟</span>
+          <nuxt-link :to="{ name: 'auth-login' }" class="btn btn-default">
+            تسجيل الدخول
+          </nuxt-link>
+        </div>
+      </client-only>
     </div>
   </div>
 </template>
