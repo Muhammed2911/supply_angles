@@ -2,13 +2,13 @@
   <div class="card_wrapper">
     <div class="row justify-content-between">
       <div class="col-lg-2">
-        <div class="img_wrapper">
+        <div class="img_wrapper" @click="handleRoute">
           <img :src="item.tender_images[0].media" alt="tender_img" />
         </div>
       </div>
       <!-- end::col -->
       <div class="col-lg-6">
-        <div class="info_wrapper">
+        <div class="info_wrapper" @click="handleRoute">
           <h4 class="title">
             {{ item.title }}
             <span>
@@ -132,6 +132,9 @@ export default {
           this.TriggerNotify('error', this.notify.message)
         })
     },
+    handleRoute() {
+      this.$router.push({ name: 'tender-id', params: { id: this.item.id } })
+    },
   },
 }
 </script>
@@ -142,6 +145,7 @@ export default {
   border: 2px solid $base-color;
   border-radius: 10px;
   margin-bottom: 20px;
+  cursor: pointer;
   .img_wrapper {
     img {
       width: 100%;

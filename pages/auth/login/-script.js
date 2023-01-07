@@ -51,12 +51,8 @@ export default {
           this.$router.replace('/')
         })
         .catch((err) => {
-          const req_error = {
-            data: err.response,
-            type: 'catch',
-          }
-          this.error_handler(req_error)
-          this.TriggerNotify('error', this.notify.message)
+          // console.log(err.message)
+          this.TriggerNotify('error', err.message)
         })
     },
   },

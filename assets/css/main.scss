@@ -770,6 +770,7 @@ ul {
   align-items: center;
   padding-inline: 20px;
   transform: translateY(-35px);
+  z-index: 100;
   .item {
     margin-inline-start: 10px;
     input {
@@ -855,6 +856,37 @@ ul {
         z-index: 100;
         cursor: pointer;
       }
+    }
+  }
+}
+
+/* start:: modal */
+.modal-content {
+  border: none;
+  border-radius: 0;
+  padding: 15px;
+}
+.modal-header {
+  border: none;
+  margin-bottom: 25px;
+  .modal-title {
+    font-weight: 700;
+  }
+  .close {
+    margin: -1rem auto -1rem -1rem;
+    font-weight: 600;
+    opacity: 1;
+  }
+}
+.modal_wrapper {
+  .form_wrapper {
+    .btn-default {
+      min-width: 180px;
+      display: block;
+      margin-inline: auto;
+      border-radius: 25px;
+      color: #fff;
+      background-color: $base-color;
     }
   }
 }
