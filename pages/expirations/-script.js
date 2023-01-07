@@ -37,7 +37,6 @@ export default {
     }
   },
   methods: {
-    async refetchTenders(page) {},
     handleSharing(item) {
       this.selected_item = item
       this.sharing.url = `https://mysupplyangel.com${this.$route.fullPath}/${item.id}`
@@ -73,13 +72,16 @@ export default {
             this.TriggerNotify('success', 'تم الأزالة من المفضلة بنجاح !')
           }
           if (res.data.data.is_favorite == true) {
-            this.TriggerNotify('success', 'تم الأضافة من المفضلة بنجاح !')
+            this.TriggerNotify('success', 'تم الأضافة الي المفضلة بنجاح !')
           }
           this.expirations[idx].is_favorite = res.data.data.is_favorite
         })
         .catch((err) => {
           this.TriggerNotify('error', err.response.data.message)
         })
+    },
+    handleRoute(id) {
+      this.$router.push({ name: 'expirations-id', params: { id: id } })
     },
   },
 }

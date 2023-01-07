@@ -35,14 +35,14 @@
         <div class="card_wrapper" v-for="(item, idx) in expirations" :key="idx">
           <div class="row justify-content-between">
             <div class="col-lg-2">
-              <div class="img_wrapper">
+              <div class="img_wrapper" @click="handleRoute(item.id)">
                 <img :src="item.expiration_images[0].media" alt="tender_img" />
               </div>
             </div>
             <!-- end::col -->
             <div class="col-lg-6">
               <div class="info_wrapper">
-                <h4 class="title">
+                <h4 class="title" @click="handleRoute(item.id)">
                   {{ item.title }}
                   <span>
                     {{ $moment(item.created_at).startOf().fromNow() }}

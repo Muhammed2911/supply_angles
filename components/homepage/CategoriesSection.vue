@@ -19,7 +19,7 @@
       </div>
       <!-- end::row -->
       <div class="button_wrapper">
-        <nuxt-link :to="{ name: 'tenders-list' }">عرض المزيد</nuxt-link>
+        <nuxt-link :to="{ name: 'categories' }">عرض المزيد</nuxt-link>
       </div>
     </div>
   </section>

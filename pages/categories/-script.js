@@ -42,5 +42,8 @@ export default {
         })
       this.disabled = false
     },
+    handleRoute(id) {
+      this.$router.push({ name: 'tenders-list', query: { cate: id } })
+    },
   },
 }

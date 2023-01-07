@@ -25,7 +25,7 @@
           v-for="(item, idx) in categories"
           :key="idx"
         >
-          <div class="card_wrapper">
+          <div class="card_wrapper" @click="handleRoute(item.id)">
             <img :src="item.image" alt="img" />
             <p class="title">{{ item.name }}</p>
           </div>
@@ -47,6 +47,7 @@
   }
   .card_wrapper {
     margin-bottom: 35px;
+    cursor: pointer;
     img {
       width: 200px;
       height: 170px;

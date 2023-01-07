@@ -9,13 +9,23 @@ export default {
   name: 'TendersList',
   components: { Breadcrumb, TenderFilter, TenderCard },
   async asyncData(context) {
-    await context.$axios
-      .$get('/tenders')
-      .then((res) => {
-        context.store.commit('tenders/SET_TENDERS_DATA', res.data)
-        context.store.commit('tenders/SET_TENDERS_META', res.meta)
-      })
-      .catch((err) => {})
+    if (context.query.cate != undefined) {
+      await context.$axios
+        .$get(`/tenders?category_id=${context.query.cate}`)
+        .then((res) => {
+          context.store.commit('tenders/SET_TENDERS_DATA', res.data)
+          context.store.commit('tenders/SET_TENDERS_META', res.meta)
+        })
+        .catch((err) => {})
+    } else {
+      await context.$axios
+        .$get(`/tenders`)
+        .then((res) => {
+          context.store.commit('tenders/SET_TENDERS_DATA', res.data)
+          context.store.commit('tenders/SET_TENDERS_META', res.meta)
+        })
+        .catch((err) => {})
+    }
   },
   data() {
     return {
