@@ -10,7 +10,10 @@
       </div>
       <!-- end::title_box -->
 
-      <FormCard></FormCard>
+      <FormCard
+        :categories="categories"
+        @search-query="filterCategories"
+      ></FormCard>
       <!-- end::FormCard -->
     </div>
   </section>
@@ -24,6 +27,13 @@ import FormCard from '~/pages/expirations/-form/index.vue'
 export default {
   name: 'InsertExpirations',
   components: { Breadcrumb, FormCard },
+  async asyncData(context) {
+    const categories = await context.$axios.$get(
+      '/categories-without-pagination'
+    )
+
+    return { categories: categories.data }
+  },
   data() {
     return {
       breadcrumb: [{ name: 'expirations', title: '' }],
@@ -38,6 +48,15 @@ export default {
       this.breadcrumb[0].title = 'اضافة تصفيات'
       this.pageTitle = 'اضافة تصفيات'
     }
+  },
+  methods: {
+    async filterCategories(value) {
+      await this.$axios
+        .$get(`/categories-without-pagination?keyword=${value}`)
+        .then((res) => {
+          this.categories = res.data
+        })
+    },
   },
 }
 </script>

@@ -34,33 +34,6 @@
                     </div>
                     <!-- end::col -->
 
-                    <div class="col-lg-12">
-                      <ValidationProvider rules="required" v-slot="{ errors }">
-                        <b-form-group>
-                          <label
-                            class="control-label"
-                            :class="{ invalid: errors[0] }"
-                          >
-                            التفاصيل
-                          </label>
-                          <b-input-group>
-                            <b-form-textarea
-                              type="text"
-                              v-model="form.desc"
-                              rows="4"
-                              :class="{ invalid: errors[0] }"
-                              placeholder="يرجى ادخال التفاصيل"
-                            ></b-form-textarea>
-                          </b-input-group>
-                          <span v-if="errors[0]" class="validation-error">
-                            {{ errors[0] }}
-                          </span>
-                        </b-form-group>
-                      </ValidationProvider>
-                      <!-- end::item -->
-                    </div>
-                    <!-- end::col -->
-
                     <div class="col-lg-6">
                       <ValidationProvider rules="required" v-slot="{ errors }">
                         <b-form-group>
@@ -99,7 +72,7 @@
                           <b-input-group>
                             <b-form-input
                               type="text"
-                              v-model="form.company_name"
+                              v-model="form.product_name"
                               :class="{ invalid: errors[0] }"
                               placeholder="يرجى ادخال اسم المنتج"
                             ></b-form-input>
@@ -137,10 +110,190 @@
                       <!-- end::item -->
                     </div>
                     <!-- end::col -->
+
+                    <div class="col-lg-12">
+                      <ValidationProvider rules="required" v-slot="{ errors }">
+                        <b-form-group>
+                          <label
+                            class="control-label"
+                            :class="{ invalid: errors[0] }"
+                          >
+                            التفاصيل
+                          </label>
+                          <b-input-group>
+                            <b-form-textarea
+                              type="text"
+                              v-model="form.desc"
+                              rows="6"
+                              :class="{ invalid: errors[0] }"
+                              placeholder="يرجى ادخال التفاصيل"
+                            ></b-form-textarea>
+                          </b-input-group>
+                          <div class="uploads_wrapper">
+                            <div class="item">
+                              <input
+                                type="file"
+                                id="expiration_images"
+                                @change="
+                                  handleFileUpload($event, 'expiration_images')
+                                "
+                                multiple
+                              />
+                              <label for="expiration_images">
+                                <svg class="icon">
+                                  <use
+                                    xlink:href="~/static/sprite.svg#image"
+                                  ></use>
+                                </svg>
+                                <span>اضافة صور</span>
+                              </label>
+                            </div>
+                            <!-- end::item -->
+                            <div class="item">
+                              <input
+                                type="file"
+                                id="expiration_files"
+                                @change="
+                                  handleFileUpload($event, 'expiration_files')
+                                "
+                                multiple
+                              />
+                              <label for="expiration_files" class="attahcment">
+                                <svg class="icon">
+                                  <use
+                                    xlink:href="~/static/sprite.svg#attachment"
+                                  ></use>
+                                </svg>
+                                <span> اضافة ملفات</span>
+                              </label>
+                            </div>
+                            <!-- end::item -->
+                          </div>
+                          <!-- end::buttons_wrapper -->
+                          <span v-if="errors[0]" class="validation-error">
+                            {{ errors[0] }}
+                          </span>
+                        </b-form-group>
+                      </ValidationProvider>
+                      <!-- end::item -->
+                    </div>
+                    <!-- end::col -->
+
+                    <div class="col-xl-12">
+                      <div class="files_preview_wrapper">
+                        <div
+                          class="wrapper"
+                          v-if="expiration_images.length > 0"
+                        >
+                          <label class="control-label"> الصور </label>
+                          <div
+                            class="item"
+                            v-for="(file, idx) in expiration_images"
+                            :key="idx"
+                          >
+                            <a :href="file.media" target="_blank">
+                              <img :src="file.media" alt="preivew" />
+                            </a>
+                            <span
+                              class="close"
+                              @click="
+                                deleteMedia(file.id, idx, 'expiration_images')
+                              "
+                            >
+                              x
+                            </span>
+                          </div>
+                          <!-- end::item -->
+                        </div>
+                        <!-- end::wrapper -->
+                        <div class="wrapper" v-if="expiration_files.length > 0">
+                          <label class="control-label"> الملفات </label>
+                          <div
+                            class="item file"
+                            v-for="(file, idx) in expiration_files"
+                            :key="idx"
+                          >
+                            <a :href="file.media" target="_blank">
+                              <img
+                                src="~/static/document-file.svg"
+                                alt="preivew"
+                              />
+                              <span class="text"> {{ file.name }} </span>
+                            </a>
+                            <span
+                              class="close"
+                              @click="
+                                deleteMedia(file.id, idx, 'expiration_files')
+                              "
+                            >
+                              x
+                            </span>
+                          </div>
+                          <!-- end::item -->
+                        </div>
+                        <!-- end::wrapper -->
+                      </div>
+                      <!-- end::files_preview_wrapper -->
+                    </div>
+                    <!-- end::col -->
                   </div>
                   <!-- end::row -->
                 </div>
                 <!-- end::form_part -->
+              </div>
+              <!-- end::col -->
+
+              <div class="col-lg-6">
+                <div class="form_part h-100 with_border">
+                  <div class="categories_dropdown_wrapper">
+                    <b-form-group label="تخصص الصفقة">
+                      <b-input-group>
+                        <div class="wrapper">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="ابحث عن تخصص"
+                            @input="emitQuery($event.target.value)"
+                          />
+                          <svg class="icon">
+                            <use
+                              xlink:href="~/static/fontawesome/solid.svg#magnifying-glass"
+                            ></use>
+                          </svg>
+                        </div>
+                      </b-input-group>
+                    </b-form-group>
+                    <!-- end::form-group -->
+
+                    <div class="categories_selected">
+                      <div
+                        class="item"
+                        v-for="(option, idx) in form.category_ids"
+                        :key="idx + 100"
+                      >
+                        {{ option.name }}
+                        <span class="close" @click="toggleSelected(option)">
+                          x
+                        </span>
+                      </div>
+                      <!-- end::item -->
+                    </div>
+                    <!-- end::categories_selected -->
+
+                    <div class="categories_list">
+                      <a
+                        href="javascript:;"
+                        v-for="(item, idx) in categories"
+                        :key="idx"
+                        @click="toggleSelected(item)"
+                      >
+                        {{ item.name }}
+                      </a>
+                    </div>
+                    <!-- end::categories_list -->
+                  </div>
+                  <!-- end::categories_dropdown_wrapper -->
+                </div>
               </div>
               <!-- end::col -->
 
@@ -209,6 +362,29 @@
         height: 100%;
         background-color: #ddd;
         transform: translateY(-50%);
+      }
+    }
+  }
+  .input-group {
+    .wrapper {
+      width: 100%;
+      .icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        fill: #919191;
+        z-index: 10;
+      }
+      .form-control {
+        height: 60px;
+        background-color: #efefef;
+        border: none;
+        padding-inline-start: 40px;
+        box-shadow: none;
+        border-radius: 0;
       }
     }
   }
