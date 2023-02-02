@@ -1,6 +1,6 @@
 export default function ({ $axios, redirect, app, store }) {
   /* set axios baseurl for all requests */
-  $axios.setBaseURL(`https://api.mysupplyangel.com/api/website`)
+  $axios.setBaseURL(`http://tender-api.counterattack.top/api/website/`)
 
   function setHeader() {
     let accessToken = null

@@ -102,12 +102,14 @@ export default {
           })
         })
         .catch((err) => {
-          const req_error = {
-            data: err.response,
-            type: 'catch',
-          }
-          this.error_handler(req_error)
-          this.TriggerNotify('error', this.notify.message)
+          // const req_error = {
+          //   data: err.response,
+          //   type: 'catch',
+          // }
+          // this.error_handler(req_error)
+          this.TriggerNotify('error', err.message || err.messages[0])
+          console.log(err)
+          this.disabled = false
         })
 
       this.disabled = false

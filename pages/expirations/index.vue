@@ -36,7 +36,11 @@
           <div class="row justify-content-between">
             <div class="col-lg-2">
               <div class="img_wrapper" @click="handleRoute(item.id)">
-                <img :src="item.expiration_images[0].media" alt="tender_img" />
+                <img
+                  v-if="item.expiration_images.length > 0"
+                  :src="item.expiration_images[0].media"
+                  alt="tender_img"
+                />
               </div>
             </div>
             <!-- end::col -->

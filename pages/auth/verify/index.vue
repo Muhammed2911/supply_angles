@@ -92,7 +92,7 @@
         opacity: 0;
       }
       &::placeholder {
-        font-size: 30px;
+        font-size: 20px;
       }
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {

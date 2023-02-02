@@ -19,8 +19,17 @@ export default {
   data() {
     return {
       breadcrumb: [{ name: 'my-tenders', title: 'صفقاتي' }],
+      agents: [],
+      agentsMeta: [],
       tenderPaging: 1,
       expirationsPaging: 1,
     }
+  },
+  async mounted() {
+    // getting my agents list
+    await this.$axios.$get(`/my-agent?filter=all`).then((res) => {
+      this.agents = res.data
+      this.agentsMeta = res.meta
+    })
   },
 }
