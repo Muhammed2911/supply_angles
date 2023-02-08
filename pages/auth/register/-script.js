@@ -6,6 +6,9 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'RgisterForm',
   components: { Breadcrumb },
+  async asyncData(context) {
+    await context.store.dispatch('localStorage/get_countries')
+  },
   data() {
     return {
       breadcrumb: [{ name: 'auth-register', title: 'انشاء عضوية' }],
@@ -15,7 +18,7 @@ export default {
         password: null,
         password_confirmation: null,
         email: null,
-        phone_code: 20,
+        phone_code: '02',
         phone: null,
         whats: null,
         gender: null,
@@ -28,10 +31,7 @@ export default {
         categories: [],
       },
       disabled: false,
-      codes: [
-        { value: '20', text: '+20' },
-        { value: '966', text: '+966' },
-      ],
+      codes: [],
       gender: [
         { name: 'ذكر', value: 'male' },
         { name: 'أنثى', value: 'female' },
@@ -40,7 +40,7 @@ export default {
   },
   async created() {
     await this.$store.dispatch('localStorage/get_categories')
-    await this.$store.dispatch('localStorage/get_countries')
+
     await this.$store.dispatch('localStorage/get_cities')
   },
   computed: {

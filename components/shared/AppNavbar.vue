@@ -87,7 +87,7 @@
                 تفصيات وهوالك دورية
               </nuxt-link>
               <nuxt-link :to="{ name: 'favourite' }">المفضلة</nuxt-link>
-              <nuxt-link to="">الوكلاء والموزعين</nuxt-link>
+              <nuxt-link :to="{ name: 'agents' }">الوكلاء والموزعين</nuxt-link>
               <nuxt-link to="">وظائف مشتريات ومخازن</nuxt-link>
             </div>
           </div>

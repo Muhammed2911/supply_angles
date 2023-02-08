@@ -7,7 +7,7 @@
       <!-- end::title_box -->
       <div class="row">
         <div
-          class="col-lg-2 col-md-3 col-2"
+          class="col-lg-2 col-md-3 col-12"
           v-for="(item, idx) in items"
           :key="idx"
         >
