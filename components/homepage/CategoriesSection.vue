@@ -11,7 +11,7 @@
           v-for="(item, idx) in items"
           :key="idx"
         >
-          <div class="card_wrapper">
+          <div class="card_wrapper" @click="handleRoute(item.id)">
             <img :src="item.image" alt="img" />
             <p class="title">{{ item.name }}</p>
           </div>
@@ -29,6 +29,11 @@
 export default {
   name: 'CategoriesSection',
   props: ['items'],
+  methods: {
+    handleRoute(id) {
+      this.$router.push({ name: 'tenders-list', query: { cate: id } })
+    },
+  },
 }
 </script>
 
@@ -53,6 +58,7 @@ export default {
   }
   .card_wrapper {
     margin-bottom: 35px;
+    cursor: pointer;
     img {
       width: 200px;
       height: 170px;

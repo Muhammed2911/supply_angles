@@ -1,13 +1,11 @@
 // importing components
 import Breadcrumb from '~/components/shared/Breadcrumb.vue'
 import TenderFilter from '~/components/shared/TenderFilter.vue'
-import TenderCard from '~/components/shared/TenderCard.vue'
-// importing vuex tools
-import { mapGetters } from 'vuex'
+import ExpirationCard from '~/components/shared/ExpirationCard.vue'
 
 export default {
   name: 'ExpirationsList',
-  components: { Breadcrumb, TenderFilter, TenderCard },
+  components: { Breadcrumb, TenderFilter, ExpirationCard },
   async asyncData(context) {
     const expirations = await context.$axios.$get('/expirations')
 
@@ -17,31 +15,9 @@ export default {
     return {
       breadcrumb: [{ name: 'tenders-list', title: 'تصفيات وهوالك دورية' }],
       expirationsPaging: 1,
-      selected_item: {
-        id: null,
-        title: null,
-        desc: null,
-      },
-      sharing: {
-        url: '',
-        quote: '',
-        hashtags: '',
-        twitterUser: 'zemna',
-      },
-      networks: [
-        { network: 'facebook', icon: 'facebook', color: '#1877f2' },
-        { network: 'twitter', icon: 'twitter', color: '#1da1f2' },
-        { network: 'telegram', icon: 'telegram', color: '#0088cc' },
-        { network: 'whatsapp', icon: 'whatsapp', color: '#25d366' },
-      ],
     }
   },
   methods: {
-    handleSharing(item) {
-      this.selected_item = item
-      this.sharing.url = `https://mysupplyangel.com${this.$route.fullPath}/${item.id}`
-      this.$bvModal.show('share_modal')
-    },
     async handleFilter(form) {
       await this.$axios
         .$get('/expirations', {
@@ -63,25 +39,6 @@ export default {
           this.error_handler(req_error)
           this.TriggerNotify('error', this.notify.message)
         })
-    },
-    async toggleFav(id, idx) {
-      await this.$axios
-        .post(`/expiration/${id}/favorite`)
-        .then((res) => {
-          if (res.data.data.is_favorite == false) {
-            this.TriggerNotify('success', 'تم الأزالة من المفضلة بنجاح !')
-          }
-          if (res.data.data.is_favorite == true) {
-            this.TriggerNotify('success', 'تم الأضافة الي المفضلة بنجاح !')
-          }
-          this.expirations[idx].is_favorite = res.data.data.is_favorite
-        })
-        .catch((err) => {
-          this.TriggerNotify('error', err.response.data.message)
-        })
-    },
-    handleRoute(id) {
-      this.$router.push({ name: 'expirations-id', params: { id: id } })
     },
   },
 }

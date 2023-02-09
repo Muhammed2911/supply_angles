@@ -17,8 +17,20 @@
             </div>
 
             <div class="buttons_wrapper">
-              <button type="button" class="btn btn-default">اشترك الان</button>
-              <button type="button" class="btn btn-default">
+              <button
+                type="button"
+                class="btn btn-default"
+                @click="subscribePlan(item.id)"
+                :disabled="disabled"
+              >
+                اشترك الان
+              </button>
+              <button
+                type="button"
+                class="btn btn-default"
+                @click="subscribePlan(3)"
+                :disabled="disabled"
+              >
                 اشتراك تجريبي
               </button>
             </div>
@@ -37,6 +49,27 @@ export default {
     const response = await context.$axios.$get('/packages')
 
     return { response: response.data }
+  },
+  data() {
+    return {
+      disabled: false,
+    }
+  },
+  methods: {
+    async subscribePlan(id) {
+      this.disabled = true
+      await this.$axios
+        .post(`/subscription`, { package_id: id })
+        .then((res) => {
+          this.TriggerNotify('success', 'تم الأشتراك في الباقة بنجاح !')
+          this.$router.replace('/')
+        })
+        .catch((err) => {
+          this.TriggerNotify('error', err.message)
+          this.disabled = false
+        })
+      this.disabled = false
+    },
   },
 }
 </script>

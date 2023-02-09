@@ -124,30 +124,7 @@
           <div class="agents_wrapper">
             <div class="row">
               <div class="col-lg-6" v-for="item in agents" :key="item.id">
-                <div class="card_wrapper">
-                  <div class="info_wrapper">
-                    <h4 class="title" @click="handleRoute(item.id)">
-                      {{ item.title }}
-                      <span>
-                        {{ $moment(item.created_at).startOf().fromNow() }}
-                      </span>
-                    </h4>
-                    <div class="flex_wrapper">
-                      <div class="item">
-                        <p class="desc">{{ item.desc }}</p>
-                        <div class="buttons_wrapper">
-                          <a href="javascript:;" @click="handleSharing(item)">
-                            <svg class="icon">
-                              <use xlink:href="~/static/sprite.svg#share"></use>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
-                      <!-- end::item -->
-                    </div>
-                    <!-- end::flex_wrapper -->
-                  </div>
-                </div>
+                <AgentsCard :item="item"></AgentsCard>
               </div>
               <!-- end::col -->
             </div>

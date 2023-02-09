@@ -111,7 +111,7 @@ export default {
       if (this.$route.query.type == 'get_agent') {
         form_data.append('type', 'potential_agent_or_potential_distrebutor')
       } else if (this.$route.query.type == 'search_agent') {
-        form_data.append('type', 'agent')
+        form_data.append('type', 'required_agent_or_distrebutor')
       }
       form_data.append('agent_type', this.form.agent_type)
       form_data.append('company_name', this.form.company_name)

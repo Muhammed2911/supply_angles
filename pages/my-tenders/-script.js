@@ -1,10 +1,11 @@
 // importing components
 import Breadcrumb from '~/components/shared/Breadcrumb.vue'
 import TenderCard from '~/components/shared/TenderCard.vue'
+import AgentsCard from '~/components/shared/AgentsCard.vue'
 
 export default {
   name: 'MyTenders',
-  components: { Breadcrumb, TenderCard },
+  components: { Breadcrumb, TenderCard, AgentsCard },
   async asyncData(context) {
     const tenders = await context.$axios.$get('/my-tenders?filter=all')
     const expirations = await context.$axios.$get('/my-expiration?filter=all')
